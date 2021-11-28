@@ -1,0 +1,45 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'org'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// javax + jakarta validation apis (importing both is fine):
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.1'
+	implementation 'javax.validation:validation-api:2.0.1.Final'
+
+	// jakarta bean validation implementation:
+	implementation 'org.hibernate.validator:hibernate-validator:7.0.1.Final'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-el:10.1.0-M7'
+
+	// javax bean validation implementation:
+	// (uncomment for executing the javax test)
+	// implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
+	// implementation 'org.apache.tomcat.embed:tomcat-embed-el:9.0.55'
+
+	// other (unrelated) dependencies:
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.assertj:assertj-core:3.11.1'
+}
+
+test {
+	useJUnitPlatform()
+}
